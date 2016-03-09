@@ -1,2 +1,2 @@
-class Status < ActiveHash::Base
+class Status < ActiveRecord::Base
 end

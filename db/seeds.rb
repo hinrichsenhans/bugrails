@@ -6,3 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Status.create(:name => "NEW")
+Status.create(:name => "ASSIGNED")
+Status.create(:name => "RESOLVED")
+Status.create(:name => "VERIFIED")
+Status.create(:name => "CLOSED")
+Status.create(:name => "REOPENED")
