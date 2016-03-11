@@ -8,6 +8,15 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def create
+    @product = Product.new(allowed_params)
+    if @product.save
+      render 'index'
+    else
+      render 'new'
+    end
+  end
+
   # def edit
   # end
 
@@ -19,5 +28,10 @@ class ProductsController < ApplicationController
 
   # def destroy
   # end
+
+  private
+    def allowed_params
+      params.require(:product).permit(:name, :description)
+    end
 
 end
