@@ -7,9 +7,9 @@
         <h4 class="list-group-item-heading">
           <%=p.name%>
         </h4>
-          <a href="#">View Bugs</a>
-          <a href="#">Rename</a>
-          <a href="#">Remove</a>
+          <%= link_to "View Bugs", '#' %> 
+          <%= link_to "Rename",  edit_product_path(p) %>
+          <%= link_to "Remove",  "#" %>
         <p class="list-group-item-text">
           <%=p.components.count%> Components
           |

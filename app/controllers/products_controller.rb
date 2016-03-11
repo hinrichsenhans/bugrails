@@ -17,14 +17,21 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def edit
-  # end
+  def edit
+    @product = Product.find(params[:id])
+  end
 
   # def show
   # end
 
-  # def update
-  # end
+  def update
+    @product = Product.find(params[:id])
+    if @product.update_attributes(allowed_params)
+      redirect_to action:'index'
+    else
+      render 'edit'
+    end
+  end
 
   # def destroy
   # end
