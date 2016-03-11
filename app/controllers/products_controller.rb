@@ -4,8 +4,9 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  # def new
-  # end
+  def new
+    @product = Product.new
+  end
 
   # def edit
   # end
