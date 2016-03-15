@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   get 'bugdemo' => 'static_pages#bugdemo'
+  get 'admin' => 'static_pages#admin'
 
   resources :products
 
