@@ -9,7 +9,8 @@
         </h4>
           <%= link_to "View Bugs", '#' %> 
           <%= link_to "Rename",  edit_product_path(p) %>
-          <%= link_to "Remove",  "#" %>
+          <%= link_to "Remove",  
+            product_path(p), :method => :delete %>
         <p class="list-group-item-text">
           <%=p.components.count%> Components
           |
