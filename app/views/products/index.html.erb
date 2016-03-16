@@ -1,7 +1,7 @@
-<div>
+<div class="page-header">
   <h1>Products</h1>
 </div>
-<div>
+<div class="collapse">
   <%= link_to "Add a new product", new_product_path %>
 </div>
 <div class="col-md-12">
@@ -14,10 +14,10 @@
         <div class="">
           <p><%= p.description %></ppp>
         </div>
-          <%= link_to "View Bugs", '#' %> 
-          <%= link_to "Rename",  edit_product_path(p) %>
+          <%= link_to "View Bugs", '#', :class=>"btn btn-sm" %> 
+          <%= link_to "Rename",  edit_product_path(p), :class=>"btn btn-sm" %>
           <%= link_to "Remove",  
-            product_path(p), :method => :delete %>
+            product_path(p), :method => :delete, :class=>"btn btn-sm" %>
         <p class="list-group-item-text">
           <%= link_to product_components_path(p) do %>
             <%=p.components.count%> Components
