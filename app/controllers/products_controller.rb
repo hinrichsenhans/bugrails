@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(allowed_params)
     if @product.save
-      render 'index'
+      redirect_to action:'index'
     else
       render 'new'
     end

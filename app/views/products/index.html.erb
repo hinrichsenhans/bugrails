@@ -1,5 +1,9 @@
-<h1>Products</h1>
-<a href="#">Add a new product</a>
+<div>
+  <h1>Products</h1>
+</div>
+<div>
+  <%= link_to "Add a new product", new_product_path %>
+</div>
 <div class="col-md-12">
   <ul class="list-group">
     <% @products.each do |p| %>
