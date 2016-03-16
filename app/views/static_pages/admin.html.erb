@@ -1,5 +1,9 @@
 <h1>Admin</h1>
-<div class="">
-  <p>Administer
-    <%= link_to "Products", products_path %>
+<div class="col-md-4">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span class="badge"><%= Product.count %></span>
+      <%= link_to "Products", products_path %>
+    </li>
+  </ul>
 </div>
