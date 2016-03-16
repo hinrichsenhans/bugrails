@@ -15,15 +15,15 @@
           <%= link_to "Remove",  
             product_path(p), :method => :delete %>
         <p class="list-group-item-text">
-          <%= link_to products_path do %>
+          <%= link_to product_components_path(p) do %>
             <%=p.components.count%> Components
           <% end %>
           |
-          <%= link_to products_path do %>
+          <%= link_to product_versions_path(p) do %>
             <%=p.versions.count%> Versions
           <% end %>
           |
-          <%= link_to products_path do %>
+          <%= link_to product_milestones_path(p) do %>
             <%=p.milestones.count%> Milestones
           <% end %>
         </p>

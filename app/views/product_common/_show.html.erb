@@ -1,0 +1,13 @@
+<h1><%= name %> List</h1>
+
+<% if items.empty? %>
+  <p>No <%= name.pluralize(0).downcase %> exist</p>
+<% else %>
+  <ul>
+    <% items.each do |i| %>
+      <li><%= i.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p><%= link_to "Back to products", products_path %></p>

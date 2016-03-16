@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get 'bugdemo' => 'static_pages#bugdemo'
   get 'admin' => 'static_pages#admin'
 
-  resources :products
+  resources :products do
+    resources :components
+    resources :versions
+    resources :milestones
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
