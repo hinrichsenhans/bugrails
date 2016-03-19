@@ -2,8 +2,11 @@ class ComponentsController < ApplicationController
 
   before_action :set_product
 
+  def new
+    @component = Component.new(product: @product)
+  end
+  
   def create
-
   end
 
   def update

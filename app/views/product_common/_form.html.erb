@@ -1,0 +1,18 @@
+<% if local_assigns.fetch :showProduct, nil %>
+<% #prevents error if showProduct not defined by caller %>
+  <h4>Product: <%= @product.name %></h4>
+<% end %>
+<%= form_for ([@product, subobject]) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control' %>
+
+  <% if type == 'new' %>
+    <%= f.submit "Add ", class: 'btn btn-primary' %>
+  <% elsif type =='edit' %>
+    <%= f.submit "Update ", class: 'btn btn-primary' %>
+  <% end %>
+
+<% end %>
