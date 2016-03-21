@@ -5,12 +5,32 @@ class ComponentsController < ApplicationController
   def new
     @component = Component.new(product: @product)
   end
-  
+
   def create
+    @component = Component.new(allowed_params)
+    @component.product = @product
+    if @component.save
+      puts "made it"
+      redirect_to action:'index'
+    else
+      puts "didn't make it"
+      render 'new'
+    end
+  end
+
+  def edit
+    @component = Component.find(params[:id])
+    @component.product = @product
   end
 
   def update
-
+    @component = Component.find(params[:id])
+    @component.product = @product
+    if @component.update(allowed_params)
+      redirect_to action:'index'
+    else
+      render 'edit'
+    end
   end
 
   def index
@@ -24,5 +44,9 @@ class ComponentsController < ApplicationController
   private
     def set_product
       @product = Product.find(params[:product_id])
+    end
+
+    def allowed_params
+      params.require(:component).permit(:name, :description, :product_id)
     end
 end
