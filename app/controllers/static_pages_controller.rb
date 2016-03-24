@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
 
   def getsignup
     if request.xhr?
-      render :partial => "users/register"
+      render :partial => "users/signup"
     else
       redirect_to :action => "home"
     end

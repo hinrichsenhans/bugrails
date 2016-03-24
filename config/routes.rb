@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'admin' => 'static_pages#admin'
 
   get 'getlogin' => 'static_pages#getlogin'
+  post 'login' => 'users#login'
   get 'getsignup' => 'static_pages#getsignup'
+  post 'signup' => 'users#signup'
 
   resources :products do
     resources :components
