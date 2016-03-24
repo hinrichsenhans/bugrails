@@ -1,11 +1,32 @@
 <h1><%= name %> List</h1>
-
+<p><%= link_to "Add new #{name}",
+                { 
+                  :controller => controller.controller_name,
+                  :action => "new",
+                }
+    %>
 <% if items.empty? %>
   <p>No <%= name.pluralize(0).downcase %> exist</p>
 <% else %>
   <ul>
     <% items.each do |i| %>
-      <li><%= i.name %></li>
+      <li><%= i.name %> 
+        <%= link_to " [Edit]", 
+                    { :controller => controller.controller_name,
+                      :action => "update",
+                      :id => i 
+                    },  
+                    :method => :patch
+        %>
+        <%= link_to "x", 
+                    { :controller => controller.controller_name,
+                      :action => "destroy",
+                      :id => i 
+                    },
+                    :method => :delete,
+                    :confirm => "Are you sure?" 
+        %>
+      </li>
     <% end %>
   </ul>
 <% end %>

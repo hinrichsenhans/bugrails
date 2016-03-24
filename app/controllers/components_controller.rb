@@ -37,8 +37,19 @@ class ComponentsController < ApplicationController
     @components = @product.components
   end
 
-  def destroy
+  def show
+    redirect_to action:'index'
+  end
 
+  def destroy
+    @component = Component.find(params[:id])
+    @component.product = @product
+    if @component.destroy
+      redirect_to action:'index'
+    else
+      redirect_to action:'index'
+      #todo: more specific action later
+    end
   end
 
   private
