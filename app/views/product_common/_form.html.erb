@@ -6,8 +6,10 @@
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
 
+<% if subobject.has_attribute?(:description) %>
   <%= f.label :description %>
   <%= f.text_area :description, class: 'form-control' %>
+<% end %>
 
   <% if type == 'new' %>
     <%= f.submit "Add ", class: 'btn btn-primary' %>
