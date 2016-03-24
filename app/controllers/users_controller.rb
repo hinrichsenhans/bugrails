@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if(user.save)
       redirect_to '/'
     else
-      render '/signup'
+      redirect_to '/'
     end
   end
 
