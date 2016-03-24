@@ -10,10 +10,8 @@ class ComponentsController < ApplicationController
     @component = Component.new(allowed_params)
     @component.product = @product
     if @component.save
-      puts "made it"
       redirect_to action:'index'
     else
-      puts "didn't make it"
       render 'new'
     end
   end
