@@ -1,4 +1,5 @@
 <h1><%= name %> List</h1>
+<h4>For <%= @product.name %></h4>
 <p><%= link_to "Add new #{name}",
                 { 
                   :controller => controller.controller_name,
@@ -13,10 +14,10 @@
       <li><%= i.name %> 
         <%= link_to " [Edit]", 
                     { :controller => controller.controller_name,
-                      :action => "update",
+                      :action => "edit",
                       :id => i 
                     },  
-                    :method => :patch
+                    :method => :get
         %>
         <%= link_to "x", 
                     { :controller => controller.controller_name,
