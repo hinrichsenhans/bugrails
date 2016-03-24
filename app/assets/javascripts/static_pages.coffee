@@ -3,14 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $("a#getLogin").click (e) ->
+  $("a.getLogin").click (e) ->
     e.preventDefault()
     $.get('getlogin').done (data) ->
       $('div#userLogin').html(data)
 
 
 $ ->
-  $("a#getSignup").click (e) ->
+  $("a.getSignup").click (e) ->
     e.preventDefault()
     $.get('getsignup').done (data) ->
       $('div#userLogin').html(data)

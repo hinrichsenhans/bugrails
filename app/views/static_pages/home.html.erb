@@ -1,9 +1,30 @@
 <div class="container">
-  <h1>Railszilla</h1>   
+  <h1>Railszilla</h1>  
+  <article class="well">
+    An implementation of Bugzilla written in Ruby on Rails.
+    <br/><br/>
+    <div class="alert alert-info">
+      As this is a work in progress (check-in-1), the following is implemented:
+      <ul>
+        <li>
+          <a class="getSignup" href="#">Sign up</a> for an account below.
+        </li>        
+        <li>
+          On the <%= link_to "Admin Page", "admin" %>, you can set up products, milestones, versions, and components to log bugs against.
+        </li>
+        <li>
+          The nav bar UI is representative of a close to final version (without the backend implementation). 
+        </li>
+        <li>
+          Check out the <%= link_to "Demo Page", "bugdemo" %> for a sample bug list rendering. 
+        </li>
+      </ul>
+    </div>
+  </article>
   <div id="userLogin">
     <%= render partial: "users/login" %>
   </div>
-  <a id="getSignup" href="#">Sign Up</a>
+  <a class="getSignup" href="#">Sign Up</a>
   or
-  <a id="getLogin" href="#">Log In instead</a>
+  <a class="getLogin" href="#">Log In instead</a>
 </div>
