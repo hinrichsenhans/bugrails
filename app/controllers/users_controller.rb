@@ -15,6 +15,12 @@ class UsersController < ApplicationController
   end
 
 
+  def index
+    #todo - check for admin rights
+    @users = User.all
+  end
+
+
   private
 
     def allowed_params

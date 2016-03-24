@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Administer Users</h1>
+</div>
+<div class="collapse">
+  <%= link_to "Add a new product", new_product_path %>
+</div>
+<div class="col-md-12">
+  <ul class="list-group">
+    <% @users.each do |u| %>
+      <li class="list-group-item">
+        <h4 class="list-group-item-heading">
+          <%=u.name%>
+        </h4>
+        <div class="">
+          <p><%= u.email %></p>
+        </div>
+          <%= link_to "Rename",  
+                      edit_user_path(u), 
+                      :class=>"btn btn-sm" %>
+          <%= link_to "Remove",  
+                      user_path(u), 
+                      :method => :delete, 
+                      :class=>"btn btn-sm" %>
+            <%= link_to "Reset Password",  
+                        "#", 
+                        :class=>"btn btn-sm" %>
+        <p class="list-group-item-text">
+          # Bugs Submitted | # Bugs Assigned
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>
