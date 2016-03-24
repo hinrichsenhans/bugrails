@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'bugdemo' => 'static_pages#bugdemo'
   get 'admin' => 'static_pages#admin'
 
+  get 'getlogin' => 'static_pages#getlogin'
+  get 'getsignup' => 'static_pages#getsignup'
+
   resources :products do
     resources :components
     resources :versions
