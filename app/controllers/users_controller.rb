@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
 
-  def create
+  def signup
     user = User.new(allowed_params)
     if(user.save)
       redirect_to '/'
     else
       render '/signup'
     end
+  end
+
+  def login
+    #todo
+    redirect_to '/'
   end
 
 
