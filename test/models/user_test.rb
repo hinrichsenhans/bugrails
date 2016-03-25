@@ -38,6 +38,18 @@ class UserTest < ActiveSupport::TestCase
 
   end
 
+  test "user email must be a valid email" do
+    # a few basic tests
+    @user.email = "b"
+    assert_not @user.valid?
+
+    @user.email = "b@b"
+    assert_not @user.valid?
+
+    @user.email = "@b.com"
+    assert_not @user.valid?
+  end
+
   test "password must be 6 characters or longer" do
     @user.password = "12345"
     assert_not @user.valid?
