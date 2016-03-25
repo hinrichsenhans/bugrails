@@ -56,7 +56,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "password must be 20 characters or shorter" do
-    @user.password = "abcdefghijklmnopqrstu"
+    @user.password = "abcdefghijklmnopqrstu" #21 characters
     assert_not @user.valid?
   end
 
