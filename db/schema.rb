@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324055651) do
+ActiveRecord::Schema.define(version: 20160325160709) do
+
+  create_table "bugs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "product_id"
+    t.integer  "component_id"
+    t.integer  "milestone_id"
+    t.integer  "version_found_id"
+    t.integer  "version_integrated_id"
+    t.integer  "status_id"
+    t.integer  "substatus_id"
+    t.integer  "developer_id"
+    t.integer  "submitter_id"
+    t.integer  "tester_id"
+    t.decimal  "dec_hours_estimated"
+    t.decimal  "dec_hours_worked"
+    t.decimal  "dec_hours_remaining"
+    t.datetime "submitted_dt"
+    t.datetime "closed_dt"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "components", force: :cascade do |t|
     t.string   "name"
