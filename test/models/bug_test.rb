@@ -7,6 +7,7 @@ class BugTest < ActiveSupport::TestCase
     @user = User.first
     @bug.developer_id = @user.id
     @bug.submitter_id = @user.id
+    @bug.tester_id = @user.id
   end
 
   test "must have submitted on date when created" do
@@ -26,6 +27,13 @@ class BugTest < ActiveSupport::TestCase
     @bug.submitter_id = nil
     assert_not @bug.valid?
   end
+
+  test "bug must have a tester" do
+    assert @bug.save!
+    @bug.tester_id = nil
+    assert_not @bug.valid?
+  end
+
 
 
 end
