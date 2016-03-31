@@ -8,6 +8,8 @@ class BugTest < ActiveSupport::TestCase
     @bug.developer_id = @user.id
     @bug.submitter_id = @user.id
     @bug.tester_id = @user.id
+    @bug.version_found_id = Version.first.id
+    @bug.component_id = Component.first.id
   end
 
   test "must have submitted on date when created" do
@@ -34,6 +36,25 @@ class BugTest < ActiveSupport::TestCase
     assert_not @bug.valid?
   end
 
+  test "bug must have a component" do
+    @bug.component_id = nil
+    assert_not @bug.valid?
+  end
 
+  test "bug must have a version found" do
+    @bug.version_found_id = nil
+    assert_not @bug.valid?
+  end
+
+  test "bug must have a version" do
+    @bug.version_found_id = nil
+    assert_not @bug.valid?
+  end
+
+  #bugs probably need to have a milestone before they are "resolved"
+  # test "bug must have a milestone" do
+  #   @bug.component_id = nil
+  #   assert_not @bug.valid?
+  # end
 
 end
