@@ -1,5 +1,7 @@
 class ComponentsController < ApplicationController
-
+  # you may want to make this not fire on the show action since you are redirecting
+  # right away. That will save you a DB hit on that page. You could also use nested
+  # resources the way we did in class, now that you have a working example.
   before_action :set_product
 
   def new
