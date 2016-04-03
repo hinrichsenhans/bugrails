@@ -34,9 +34,8 @@ class BugTest < ActiveSupport::TestCase
   end
 
   test "bug must have a component" do
-    # puts @bug.inspect
-    # @bug.component_id = nil
-    # assert_not @bug.valid?
+    @bug.component_id = nil
+    assert_not @bug.valid?
   end
 
   test "bug must have a version found" do

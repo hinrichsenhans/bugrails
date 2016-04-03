@@ -13,6 +13,7 @@ bug_one:
   submitter_id: 2
   product_id: 1
   version_found_id: 1
+  component_id: 1
 
 bug_two:
   developer: user_one
