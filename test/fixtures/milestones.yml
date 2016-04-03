@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+milestone_one:
+  id: 1
+  name: First Milestone
 
-two:
-  name: MyString
+milestone_two:
+  id: 2
+  name: Second Milestone

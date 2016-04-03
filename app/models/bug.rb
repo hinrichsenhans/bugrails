@@ -17,13 +17,12 @@ class Bug < ActiveRecord::Base
   #validations
   validates_presence_of   :developer
   validates_presence_of   :submitter
-  validates_associated    :tester
+  validates_presence_of   :tester
 
   validates_presence_of :version_found      #cannot be blank
-  validates             :version_found_id, presence: true
   validates_associated  :version_integrated #can be blank
 
-  # validates_presence_of :milestone
+  validates_associated :milestone
 
   validates_presence_of :component
 

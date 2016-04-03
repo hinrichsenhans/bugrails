@@ -14,6 +14,7 @@ bug_one:
   product_id: 1
   version_found_id: 1
   component_id: 1
+  milestone: first_milestone
 
 bug_two:
   developer: user_one

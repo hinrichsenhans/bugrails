@@ -39,14 +39,20 @@ class BugTest < ActiveSupport::TestCase
   end
 
   test "bug must have a version found" do
-    # @bug.version_found_id = nil
-    # assert_not @bug.valid?
+    @bug.version_found_id = nil
+    assert_not @bug.valid?
   end
 
-  test "bug must have a version" do
-    # @bug.version_found_id = nil
-    # assert_not @bug.valid?
-  end
+  # when a bug is resolved, it must have a milestone and tester
+  # test "bug must have a milestone when moving to resolved" do
+  #   @bug.milestone_id = nil
+  # end
+
+
+  # test "bug must have a version" do
+  #   # @bug.version_found_id = nil
+  #   # assert_not @bug.valid?
+  # end
 
   #bugs probably need to have a milestone before they are "resolved"
   # test "bug must have a milestone" do
