@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+first_product: 
+  id: 1
   name: MyString
   description: MyText
 
-two:
+second_product:
   name: MyString
   description: MyText

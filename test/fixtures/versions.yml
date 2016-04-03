@@ -4,8 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
+version_one:
+  id: 1
   name: v1.0.0
+  product_id: 1
 #
-two:
+version_two:
+  id: 2
   name: v2.0.0
+  product_id: 1

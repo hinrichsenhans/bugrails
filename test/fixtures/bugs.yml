@@ -4,8 +4,21 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+bug_one:
+  id: 1
+  title: This is broken when something happens
+  description: All the broken details
+  developer_id: 1
+  tester_id: 2
+  submitter_id: 2
+  product_id: 1
+  version_found_id: 1
+
+bug_two:
+  developer: user_one
+  tester: user_two
+  submitter: user_one
+  # product: first_product
+  # version_found: version_one (Version)
+
+
