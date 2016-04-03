@@ -1,5 +1,7 @@
-class BugController < ApplicationController
+class BugsController < ApplicationController
+
   def new
+    @bug = Bug.new
   end
 
   def create
@@ -18,4 +20,6 @@ class BugController < ApplicationController
   def update
     #process update
   end
+
+
 end

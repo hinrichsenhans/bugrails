@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
 
-  get 'bug/new'
-  get 'bug/show'
-  get 'bug/index'
-  get 'bug/edit'
-  post 'bug/create'
-  post 'bug/update'
+  resources :bugs
 
   get 'bugdemo' => 'static_pages#bugdemo'
   get 'admin' => 'static_pages#admin'

@@ -1,0 +1,25 @@
+<%= form_for @bug do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control' %>
+
+  <%= f.label :developer %>
+  <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+
+  <%= f.label :tester %>
+  <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+
+  <% #todo: this should be automatically added by the create method %>
+  <%= f.label :submitter %>
+  <%= collection_select(:submitter, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+
+  <%= f.label :product %>
+  <%= collection_select(:product, :product_id, Product.all, :id, :name, {}, {class: 'form-control'}) %>
+
+  <%= f.submit "Submit Bug", class: 'btn btn-primary' %>
+
+  <% #todo: product select calls back to app via AJAX for list of components, versions, milestones %>
+
+<% end %>
