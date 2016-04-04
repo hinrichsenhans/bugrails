@@ -18,6 +18,11 @@
   <%= f.label :product %>
   <%= collection_select(:product, :product_id, Product.all, :id, :name, {}, {class: 'form-control'}) %>
 
+  <%= render partial: 'product_common/select',
+    locals: {
+      subobject: Product.first.components
+    } %>
+
   <%= f.submit "Submit Bug", class: 'btn btn-primary' %>
 
   <% #todo: product select calls back to app via AJAX for list of components, versions, milestones %>
