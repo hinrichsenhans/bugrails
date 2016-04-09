@@ -1,2 +1,2 @@
 <%# INPUT: subobject (components, versions, or milestones) %>
-<%= collection_select(subobject, subobject.class.name.foreign_key, subobject.all, :id, :name, {}, {class: 'form-control'}) %>
+<%= collection_select(subobject, subobject.class.name.foreign_key, subobject.all, :id, :name, {}, {class: "form-control #{subobject.first.class.name}"}) %>

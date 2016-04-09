@@ -21,5 +21,4 @@ class BugsController < ApplicationController
     #process update
   end
 
-
 end

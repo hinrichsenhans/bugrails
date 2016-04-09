@@ -16,12 +16,39 @@
   <%= collection_select(:submitter, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
 
   <%= f.label :product %>
-  <%= collection_select(:product, :product_id, Product.all, :id, :name, {}, {class: 'form-control'}) %>
+  <%= collection_select(:product, :product_id, Product.all, :id, :name, {}, {class: 'form-control product_selector'}) %>
 
-  <%= render partial: 'product_common/select',
+  <%= f.label "Component" %>
+  <div id="componentSelect">
+    <%= render partial: 'product_common/select',
     locals: {
       subobject: Product.first.components
     } %>
+  </div>
+
+  <%= f.label "Milestone" %>
+  <div id="milestoneSelect">
+    <%= render partial: 'product_common/select',
+    locals: {
+      subobject: Product.first.milestones
+    } %>
+  </div>
+
+  <%= f.label "Version Found" %>
+  <div id="versionFoundSelect">
+    <%= render partial: 'product_common/select',
+    locals: {
+      subobject: Product.first.versions
+    } %>
+  </div>
+
+  <%= f.label "Version Integrated" %>
+  <div id="versionIntegratedSelect">
+    <%= render partial: 'product_common/select',
+    locals: {
+      subobject: Product.first.versions
+    } %>
+  </div>
 
   <%= f.submit "Submit Bug", class: 'btn btn-primary' %>
 
