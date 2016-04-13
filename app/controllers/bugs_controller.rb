@@ -5,8 +5,8 @@ class BugsController < ApplicationController
   end
 
   def create
-    @bug = Bug.new(allowed_params)
-    @bug.milestone_id = params[:milestone_id]
+    @productTarget = Product.find(params[:product][:product_id])
+    @bug = @productTarget.bugs.build(allowed_params)
     if @bug.save
       redirect_to @bug
     else
@@ -18,6 +18,7 @@ class BugsController < ApplicationController
   end
 
   def show
+    @bug = Bug.find(params[:id])
   end
 
   def index
@@ -34,8 +35,9 @@ private
   def allowed_params
     params.require(:bug).permit(
       :title, :description, 
-      :developer, :tester, :submitter, 
-      :component_id, :milestone_id, :version_id
+      :developer_id, :tester_id, :submitter_id, 
+      :component_id, :milestone_id, :version_found_id,
+      :version_integrated_id
       )
   end
 

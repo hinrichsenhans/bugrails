@@ -16,7 +16,8 @@
         <div id="componentSelect">
           <%= render partial: 'product_common/select',
           locals: {
-            subobject: Product.first.components
+            subobject: Product.first.components,
+            foreign_key: 'component_id'
           } %>
         </div>
 
@@ -24,7 +25,8 @@
         <div id="milestoneSelect">
           <%= render partial: 'product_common/select',
           locals: {
-            subobject: Product.first.milestones
+            subobject: Product.first.milestones,
+            foreign_key: 'milestone_id'
           } %>
         </div>
 
@@ -51,14 +53,14 @@
     <fieldset class="bug-form-header">
       <legend>User Information</legend>
       <%= f.label :developer %>
-      <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+      <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[developer_id]'}) %>
 
       <%= f.label :tester %>
-      <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+      <%= collection_select(:tester, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[tester_id'}) %>
 
       <% #todo: this should be automatically added by the create method %>
       <%= f.label :submitter %>
-      <%= collection_select(:submitter, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+      <%= collection_select(:submitter, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[submitter_id'}) %>
 
     </fieldset>
   </div>
