@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :users
   
-  resources :products do
+  resources :products, :except => ['show'] do
     resources :components
     resources :versions
     resources :milestones

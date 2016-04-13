@@ -1,13 +1,6 @@
 class Status < ActiveRecord::Base
 
-  # I'm going to break you of your C++ method naming :)
-  # in ruby methods are snake_case and define the variables in your signature
-  # def substatus_eligible
-  # end
-  #
-  # I'm also surpised that this didn't blow up on name, and it infered that it
-  # is the current instance of Status.  Hey I learned something today!
-  def substatusEligible()
+  def substatus_eligible()
     case name
     when "NEW"
       false

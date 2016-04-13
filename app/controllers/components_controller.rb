@@ -2,7 +2,10 @@ class ComponentsController < ApplicationController
   # you may want to make this not fire on the show action since you are redirecting
   # right away. That will save you a DB hit on that page. You could also use nested
   # resources the way we did in class, now that you have a working example.
-  before_action :set_product
+  
+  # HH 4/12/16 - added :only restriction, will move to resources soon as that is a good point.
+  
+  before_action :set_product, :only => [:new, :create, :edit, :update, :index]
 
   def new
     @component = Component.new(product: @product)
@@ -43,7 +46,6 @@ class ComponentsController < ApplicationController
 
   def destroy
     @component = Component.find(params[:id])
-    @component.product = @product
     if @component.destroy
       redirect_to action:'index'
     else

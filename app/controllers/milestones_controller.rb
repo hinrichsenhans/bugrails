@@ -1,6 +1,6 @@
 class MilestonesController < ApplicationController
 
-  before_action :set_product
+  before_action :set_product, :only => [:new, :create, :edit, :update, :index]
 
   def new
     @milestone = Milestone.new(product: @product)
@@ -37,10 +37,6 @@ class MilestonesController < ApplicationController
 
   def destroy
     @milestone = Milestone.find(params[:id])
-    # If you are just going to destroy the milestone here you don't need to
-    # assign the product to it, there is no view for destroy... then you can
-    # also ignore setting the @product for this action
-    @milestone.product = @product
     if @milestone.destroy
       redirect_to action:'index'
     else

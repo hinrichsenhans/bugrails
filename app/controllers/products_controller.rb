@@ -21,11 +21,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
   
-  # if you aren't going to have a show page, just nuke the code and make sure
-  # you don't have a route for it.  It's safer if you just remove it.
-  # def show
-  # end
-
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(allowed_params)

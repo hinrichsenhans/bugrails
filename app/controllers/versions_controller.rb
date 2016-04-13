@@ -1,6 +1,6 @@
 class VersionsController < ApplicationController
 
-  before_action :set_product
+  before_action :set_product, :only => [:new, :create, :edit, :update, :index]
 
   def new
     @version = Version.new(product: @product)
@@ -41,7 +41,6 @@ class VersionsController < ApplicationController
 
   def destroy
     @version = Version.find(params[:id])
-    @version.product = @product
     if @version.destroy
       redirect_to action: 'index'
     else
