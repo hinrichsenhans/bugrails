@@ -1,57 +1,75 @@
 <%= form_for @bug do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title, class: 'form-control' %>
-
-  <%= f.label :description %>
-  <%= f.text_area :description, class: 'form-control' %>
-
-  <%= f.label :developer %>
-  <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
-
-  <%= f.label :tester %>
-  <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
-
-  <% #todo: this should be automatically added by the create method %>
-  <%= f.label :submitter %>
-  <%= collection_select(:submitter, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
-
-  <%= f.label :product %>
-  <%= collection_select(:product, :product_id, Product.all, :id, :name, {}, {class: 'form-control product_selector'}) %>
-
-  <%= f.label "Component" %>
-  <div id="componentSelect">
-    <%= render partial: 'product_common/select',
-    locals: {
-      subobject: Product.first.components
-    } %>
+  <div class="row">
+    <div class="col-md-12 bug-form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
   </div>
 
-  <%= f.label "Milestone" %>
-  <div id="milestoneSelect">
-    <%= render partial: 'product_common/select',
-    locals: {
-      subobject: Product.first.milestones
-    } %>
+  <div class="col-md-6 bug-form-group">
+    <fieldset class="bug-form-header">
+      <legend>Product Information</legend>
+        <%= f.label :product %>
+        <%= collection_select(:product, :product_id, Product.all, :id, :name, {}, {class: 'form-control product_selector'}) %>
+
+        <%= f.label "Component" %>
+        <div id="componentSelect">
+          <%= render partial: 'product_common/select',
+          locals: {
+            subobject: Product.first.components
+          } %>
+        </div>
+
+        <%= f.label "Milestone" %>
+        <div id="milestoneSelect">
+          <%= render partial: 'product_common/select',
+          locals: {
+            subobject: Product.first.milestones
+          } %>
+        </div>
+
+        <%= f.label "Version Found" %>
+        <div id="versionFoundSelect">
+          <%= render partial: 'product_common/select',
+          locals: {
+            subobject: Product.first.versions,
+            foreign_key: 'version_found_id'
+          } %>
+        </div>
+
+        <%= f.label "Version Integrated" %>
+        <div id="versionIntegratedSelect">
+          <%= render partial: 'product_common/select',
+          locals: {
+            subobject: Product.first.versions,
+            foreign_key: 'version_integrated_id'
+          } %>
+        </div>
+    </fieldset>
+  </div>
+  <div class="col-md-6 bug-form-group">
+    <fieldset class="bug-form-header">
+      <legend>User Information</legend>
+      <%= f.label :developer %>
+      <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+
+      <%= f.label :tester %>
+      <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+
+      <% #todo: this should be automatically added by the create method %>
+      <%= f.label :submitter %>
+      <%= collection_select(:submitter, :user_id, User.all, :id, :name, {}, {class: 'form-control'}) %>
+
+    </fieldset>
   </div>
 
-  <%= f.label "Version Found" %>
-  <div id="versionFoundSelect">
-    <%= render partial: 'product_common/select',
-    locals: {
-      subobject: Product.first.versions
-    } %>
+  <div class="row bug-form-clear">
+    <div class="col-md-12 bug-form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
   </div>
-
-  <%= f.label "Version Integrated" %>
-  <div id="versionIntegratedSelect">
-    <%= render partial: 'product_common/select',
-    locals: {
-      subobject: Product.first.versions
-    } %>
-  </div>
-
+  
   <%= f.submit "Submit Bug", class: 'btn btn-primary' %>
-
-  <% #todo: product select calls back to app via AJAX for list of components, versions, milestones %>
 
 <% end %>

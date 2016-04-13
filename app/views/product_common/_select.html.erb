@@ -1,2 +1,13 @@
 <%# INPUT: subobject (components, versions, or milestones) %>
-<%= collection_select(subobject, subobject.class.name.foreign_key, subobject.all, :id, :name, {}, {class: "form-control #{subobject.first.class.name}"}) %>
+<%= collection_select(
+      subobject, 
+      local_assigns[:foreign_key] ? foreign_key : subobject.class.name.foreign_key.downcase, 
+      subobject.all, 
+      :id, 
+      :name, 
+      {}, 
+      { 
+        class: "form-control", 
+        name: "bug[#{subobject.first.class.name.downcase}_id]"
+      }) 
+%>
