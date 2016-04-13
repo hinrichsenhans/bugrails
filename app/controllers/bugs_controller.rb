@@ -24,8 +24,9 @@ class BugsController < ApplicationController
   def index
   end
 
-  def edit
-  end
+  # show is edit
+  # def edit
+  # end
 
   def update
     #process update
