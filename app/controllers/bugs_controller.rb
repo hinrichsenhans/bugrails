@@ -8,6 +8,7 @@ class BugsController < ApplicationController
     @productTarget = Product.find(params[:product][:product_id])
     @bug = @productTarget.bugs.build(allowed_params)
     if @bug.save
+      flash[:success] = "OK"
       redirect_to @bug
     else
       flash[:alert] = params
@@ -29,7 +30,14 @@ class BugsController < ApplicationController
   # end
 
   def update
-    #process update
+    @bug = Bug.find(params[:id])
+    if @bug.update(allowed_params)
+      flash[:success] = "OK"
+      render 'show'
+    else
+      flash[:alert] = params
+      render 'show'
+    end
   end
 
 private
