@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'admin' => 'static_pages#admin'
 
   get 'getlogin' => 'static_pages#getlogin'
-  post 'login' => 'users#login'
+  get 'login' => 'static_pages#home'
+  post 'login' => 'sessions#create'
+  post 'logout' => 'sessions#destroy'
   get 'getsignup' => 'static_pages#getsignup'
   post 'signup' => 'users#signup'
 

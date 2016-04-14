@@ -9,11 +9,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def login
-    #todo
-    redirect_to '/'
-  end
-
 
   def index
     #todo - check for admin rights
