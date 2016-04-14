@@ -1,6 +1,10 @@
 class BugsController < ApplicationController
 
   def new
+    if !logged_in?
+      flash[:info] = "Please sign in first"
+      redirect_to '/'
+    end
     @bug = Bug.new
   end
 

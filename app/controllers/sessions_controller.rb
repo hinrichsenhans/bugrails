@@ -5,7 +5,10 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:user][:password])
       log_in user
       flash[:success] = "Welcome!"
-      redirect_to '/'
+      # TODO - redirect to referrer
+      # however, most of these are sent with redirect
+      # which doesn't update the HTTP_REFERER object
+      # redirect_to(request.env['HTTP_REFERER'])
     else
       flash[:warning] = "Incorrect username/password"
       redirect_to request.referer
