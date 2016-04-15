@@ -52,16 +52,18 @@
   <div class="col-md-6 bug-form-group">
     <fieldset class="bug-form-header">
       <legend>User Information</legend>
-      <% #todo: this should be automatically added by the create method %>
+
+      <% #current_user IS the submitter %>
       <%= f.label :submitter %>
-      <%= collection_select(:submitter, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[submitter_id'}) %>
+      <% singleUser = [User.find(current_user)] %>
+      <%= collection_select(:submitter, :user_id, singleUser, :id, :name, {}, {class: 'form-control', name: 'bug[submitter_id'}) %>
 
       <%= f.label :developer %>
       <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[developer_id]'}) %>
 
       <%= f.label :tester %>
       <%= collection_select(:tester, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[tester_id'}) %>
-      
+
     </fieldset>
   </div>
 

@@ -11,12 +11,13 @@ class BugsController < ApplicationController
   def create
     @productTarget = Product.find(params[:product][:product_id])
     @bug = @productTarget.bugs.build(allowed_params)
-    if @bug.save
+
+    if submitter_is_current_user? && @bug.save
       flash[:success] = "OK"
       redirect_to @bug
     else
-      flash[:alert] = params
-      flash[:info] = @bug.inspect
+      # flash[:alert] = params
+      # flash[:info] = @bug.inspect
       flash[:danger] = @bug.errors.inspect
       render 'new'
     end
@@ -27,6 +28,7 @@ class BugsController < ApplicationController
   end
 
   def index
+    @bugs = Bug.all
   end
 
   # show is edit
@@ -36,8 +38,7 @@ class BugsController < ApplicationController
   def update
     @bug = Bug.find(params[:id])
     if @bug.update(allowed_params)
-      flash[:success] = "OK"
-      render 'show'
+      redirect_to bugs_path
     else
       flash[:alert] = params
       render 'show'
@@ -52,6 +53,10 @@ private
       :component_id, :milestone_id, :version_found_id,
       :version_integrated_id
       )
+  end
+
+  def submitter_is_current_user?
+    current_user.id == @bug.submitter_id
   end
 
 end
