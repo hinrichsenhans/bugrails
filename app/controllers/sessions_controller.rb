@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       # however, most of these are sent with redirect
       # which doesn't update the HTTP_REFERER object
       # redirect_to(request.env['HTTP_REFERER'])
+      redirect_to '/'
     else
       flash[:warning] = "Incorrect username/password"
       redirect_to request.referer

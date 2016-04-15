@@ -3,8 +3,10 @@ class UsersController < ApplicationController
   def signup
     user = User.new(allowed_params)
     if(user.save)
+      log_in(user)
       redirect_to '/'
     else
+      flash[:warning] = "Unable to register under that username"
       redirect_to '/'
     end
   end
