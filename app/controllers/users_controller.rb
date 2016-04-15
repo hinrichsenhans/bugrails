@@ -6,7 +6,9 @@ class UsersController < ApplicationController
       log_in(user)
       redirect_to '/'
     else
-      flash[:warning] = "Unable to register under that username"
+      #todo - make this pretty
+      #todo - redirect to signup, not login
+      flash[:warning] = user.errors.messages.inspect
       redirect_to '/'
     end
   end
