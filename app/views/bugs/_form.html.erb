@@ -55,7 +55,7 @@
 
       <% #current_user IS the submitter %>
       <%= f.label :submitter %>
-      <% singleUser = [User.find(current_user)] %>
+      <% singleUser = [User.find(current_user.id)] %>
       <%= collection_select(:submitter, :user_id, singleUser, :id, :name, {}, {class: 'form-control', name: 'bug[submitter_id'}) %>
 
       <%= f.label :developer %>

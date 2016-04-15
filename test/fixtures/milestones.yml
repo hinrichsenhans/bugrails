@@ -3,7 +3,9 @@
 milestone_one:
   id: 1
   name: First Milestone
+  product: first_product
 
 milestone_two:
   id: 2
   name: Second Milestone
+  product: second_product

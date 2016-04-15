@@ -31,10 +31,6 @@ class BugsController < ApplicationController
     @bugs = Bug.all
   end
 
-  # show is edit
-  # def edit
-  # end
-
   def update
     @bug = Bug.find(params[:id])
     if @bug.update(allowed_params)

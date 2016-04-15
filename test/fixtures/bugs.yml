@@ -14,13 +14,13 @@ bug_one:
   product_id: 1
   version_found_id: 1
   component_id: 1
-  milestone: first_milestone
+  milestone_id: 1
 
-bug_two:
-  developer: user_one
-  tester: user_two
-  submitter: user_one
-  # product: first_product
-  # version_found: version_one (Version)
+# bug_two:
+#   developer: user_one
+#   tester: user_two
+#   submitter: user_one
+#   # product: first_product
+#   # version_found: version_one (Version)
 
 
