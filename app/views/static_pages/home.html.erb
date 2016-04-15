@@ -10,16 +10,19 @@
           <a class="getSignup" href="#">Sign up</a> for an account below. Once you have signed up, you can view the list of users on the temporarily open-to-the-world <%= link_to "Users Page", users_path %>.
         </li> 
         <li>
-          Add/edit/view bugs above.
+          <%= link_to 'Add', new_bug_path %>
+          and
+          <%= link_to 'edit / view', bugs_path %>
+           bugs above.
         </li>       
         <li>
           On the <%= link_to "Admin Page", "admin" %>, you can set up products, milestones, versions, and components to log bugs against.
         </li>
         <li>
-          The nav bar UI is representative of a close to final version (without the backend implementation). 
+          Search is not yet implemented, but the rest of the navbar should be in order. 
         </li>
         <li>
-          Check out the <%= link_to "Demo Page", "bugdemo" %> for a sample bug list rendering. 
+          Check out the <%= link_to "Demo Page", "bugdemo" %> for a sample bug list rendering. (Though with check-in-2, there is now an <%= link_to "All Bugs", bugs_path %> page)
         </li>
       </ul>
     </div>
