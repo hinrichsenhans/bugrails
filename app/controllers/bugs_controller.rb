@@ -13,7 +13,7 @@ class BugsController < ApplicationController
     @productTarget = Product.find(params[:product][:product_id])
     @bug = @productTarget.bugs.build(allowed_params)
 
-    if submitter_is_current_user? && @bug.save
+    if logged_in? && submitter_is_current_user? && @bug.save
       flash[:success] = "OK"
       redirect_to @bug
     else
@@ -32,7 +32,7 @@ class BugsController < ApplicationController
 
   def update
     @bug = Bug.find(params[:id])
-    if @bug.update(allowed_params)
+    if logged_in? && @bug.update(allowed_params)
       redirect_to bugs_path
     else
       flash.now[:danger] = @bug.errors.messages.inspect
