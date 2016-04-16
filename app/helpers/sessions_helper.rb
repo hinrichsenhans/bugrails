@@ -16,4 +16,11 @@ module SessionsHelper
     session.delete(:user_id)
   end
 
+  def authenticate
+    if !logged_in?
+      flash[:info] = "Please sign in first"
+      redirect_to '/'
+    end
+  end
+
 end

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate, :except => [:signup]
 
   def signup
     user = User.new(allowed_params)
