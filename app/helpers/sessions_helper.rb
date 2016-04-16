@@ -19,7 +19,7 @@ module SessionsHelper
   def authenticate
     if !logged_in?
       flash[:info] = "Please sign in first"
-      redirect_to '/'
+      redirect_to login_path
     end
   end
 

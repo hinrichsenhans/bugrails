@@ -5,12 +5,12 @@ class UsersController < ApplicationController
     user = User.new(allowed_params)
     if(user.save)
       log_in(user)
-      redirect_to '/'
+      redirect_to login_path
     else
       #todo - make this pretty
       #todo - redirect to signup, not login
       flash[:warning] = user.errors.messages.inspect
-      redirect_to '/'
+      redirect_to login_path
     end
   end
 

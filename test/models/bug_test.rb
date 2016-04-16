@@ -19,7 +19,6 @@ class BugTest < ActiveSupport::TestCase
     assert @newbug.new_record?
     assert @newbug.status_id.nil?
     assert @newbug.save!
-    puts Status.all.inspect
     id = Status.find_by(:name => "NEW").id
     assert @newbug.status_id == id
   end
