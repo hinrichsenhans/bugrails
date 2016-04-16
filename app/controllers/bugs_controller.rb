@@ -16,9 +16,7 @@ class BugsController < ApplicationController
       flash[:success] = "OK"
       redirect_to @bug
     else
-      # flash[:alert] = params
-      # flash[:info] = @bug.inspect
-      flash[:danger] = @bug.errors.inspect
+      flash.now[:danger] = @bug.errors.messages.inspect
       render 'new'
     end
   end
@@ -36,7 +34,7 @@ class BugsController < ApplicationController
     if @bug.update(allowed_params)
       redirect_to bugs_path
     else
-      flash[:alert] = params
+      flash.now[:danger] = @bug.errors.messages.inspect
       render 'show'
     end
   end
