@@ -8,11 +8,19 @@ class BugTest < ActiveSupport::TestCase
     @newbug.id = nil
   end
 
-  test "must have submitted on date when created" do
+  test "bug must have submitted on date when created" do
     assert @newbug.new_record?
     assert @newbug.submitted_dt.nil?
     assert @newbug.save!
     assert_not @newbug.submitted_dt.nil?
+  end
+
+  test "bug must have NEW status when created" do
+    assert @newbug.new_record?
+    assert @newbug.status_id.nil?
+    assert @newbug.save!
+    id = Status.find_by(:name => "NEW").id
+    assert @newbug.status_id == id
   end
 
   test "bug title must not be empty" do

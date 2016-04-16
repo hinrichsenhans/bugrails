@@ -1,5 +1,6 @@
 class Status < ActiveRecord::Base
-
+  has_many :bugs
+  
   def substatus_eligible()
     case name
     when "NEW"

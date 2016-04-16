@@ -1,6 +1,6 @@
 class Bug < ActiveRecord::Base
   #callbacks
-  before_create :add_created_dt
+  before_create :add_created_dt, :add_new_status
 
   #associations
   belongs_to :developer, :class_name => "User"
@@ -13,6 +13,9 @@ class Bug < ActiveRecord::Base
   belongs_to :version_found, :class_name => "Version"
   belongs_to :version_integrated, :class_name => "Version"
   belongs_to :milestone
+
+  belongs_to :status
+  belongs_to :substatus
 
   #validations
   validates :title, :presence => true
@@ -35,4 +38,7 @@ class Bug < ActiveRecord::Base
       self.submitted_dt = DateTime.current()
     end
 
+    def add_new_status
+      self.status = Status.find_by(:name => "NEW")
+    end
 end
