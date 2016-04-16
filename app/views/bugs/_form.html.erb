@@ -62,7 +62,7 @@
       <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[developer_id]'}) %>
 
       <%= f.label :tester %>
-      <%= collection_select(:tester, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[tester_id'}) %>
+      <%= collection_select(:tester, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[tester_id]'}) %>
 
     </fieldset>
   </div>
@@ -76,6 +76,7 @@
     </div>
   </div>
   
-  <%= f.submit "Submit Bug", class: 'btn btn-primary' %>
+  <% submitLabel = @bug.new_record? ? "Submit Bug" : "Update Bug" %>
+  <%= f.submit submitLabel, class: 'btn btn-primary' %>
 
 <% end %>
