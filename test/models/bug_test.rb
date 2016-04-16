@@ -15,6 +15,18 @@ class BugTest < ActiveSupport::TestCase
     assert_not @newbug.submitted_dt.nil?
   end
 
+  test "bug title must not be empty" do
+    @bug.title = ""
+    assert_not @bug.valid?
+  end
+
+  test "bug description must not be empty and six or longer characters" do 
+    @bug.description = ""
+    assert_not @bug.valid?
+    @bug.description = "12345"
+    assert_not @bug.valid?
+  end
+
   test "bug must have a developer assigned" do
     assert @bug.save!
     @bug.developer_id = nil

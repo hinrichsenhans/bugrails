@@ -15,6 +15,10 @@ class Bug < ActiveRecord::Base
   belongs_to :milestone
 
   #validations
+  validates :title, :presence => true
+  # "It's broke" is 10 characters, so descriptions need to at least try to be verbose
+  validates :description, length: { minimum: 6 }
+
   validates_presence_of   :developer
   validates_presence_of   :submitter
   validates_presence_of   :tester
