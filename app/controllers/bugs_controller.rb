@@ -14,7 +14,7 @@ class BugsController < ApplicationController
     @bug = @productTarget.bugs.build(allowed_params)
 
     if logged_in? && submitter_is_current_user? && @bug.save
-      flash[:success] = "OK"
+      flash[:success] = "The bug has been added"
       redirect_to @bug
     else
       flash.now[:danger] = @bug.errors.messages.inspect
