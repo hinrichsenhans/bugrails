@@ -1,4 +1,5 @@
 class BugsController < ApplicationController
+  before_action :authenticate
 
   def new
     if !logged_in?
