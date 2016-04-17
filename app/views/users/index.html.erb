@@ -27,7 +27,8 @@
                         "#", 
                         :class=>"btn btn-sm" %>
         <p class="list-group-item-text">
-          # Bugs Submitted | # Bugs Assigned
+          <%= u.submitted_bugs.count %> Bugs Submitted | 
+          <%= u.developer_assigned_bugs.count %> Bugs Assigned
         </p>
       </li>
     <% end %>
