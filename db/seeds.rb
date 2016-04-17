@@ -13,6 +13,7 @@ Status.create(:name => "VERIFIED")
 Status.create(:name => "CLOSED")
 Status.create(:name => "REOPENED")
 
+Substatus.create(:name => "---")
 Substatus.create(:name => "FIXED")
 Substatus.create(:name => "INVALID")
 Substatus.create(:name => "WONTFIX")

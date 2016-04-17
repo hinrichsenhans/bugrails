@@ -67,7 +67,20 @@
     </fieldset>
   </div>
 
-  <% #Todo - add status/substatus form options ONLY when editing bug. NEW status added automatically on save %>
+  <% if !@bug.new_record? %>
+  <div class="col-md-6 bug-form-group">
+    <fieldset class="bug-form-header">
+      <legend>Status Information</legend>
+
+      <%= f.label :status %>
+      <%= collection_select(:status, :status_id, Status.all, :id, :name, {}, {class: 'form-control', name: 'bug[status_id]'}) %>
+
+      <%= f.label :substatus %>
+      <%= collection_select(:substatus, :substatus_id, Substatus.all, :id, :name, {}, {class: 'form-control', name: 'bug[substatus_id]'}) %>
+
+    </fieldset>
+  </div>
+  <% end %>
 
   <div class="row bug-form-clear">
     <div class="col-md-12 bug-form-group">

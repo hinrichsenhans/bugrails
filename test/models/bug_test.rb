@@ -20,7 +20,9 @@ class BugTest < ActiveSupport::TestCase
     assert @newbug.status_id.nil?
     assert @newbug.save!
     id = Status.find_by(:name => "NEW").id
+    subid = Substatus.find_by(:name => "---").id
     assert @newbug.status_id == id
+    assert @newbug.substatus_id == subid
   end
 
   test "bug title must not be empty" do

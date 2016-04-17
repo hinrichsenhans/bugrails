@@ -40,5 +40,6 @@ class Bug < ActiveRecord::Base
 
     def add_new_status
       self.status = Status.find_by(:name => "NEW")
+      self.substatus = Substatus.find_by(:name => "---")
     end
 end
