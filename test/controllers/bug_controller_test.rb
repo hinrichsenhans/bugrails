@@ -37,4 +37,12 @@ class BugsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should redirect when product is not configured" do
+    Product.all.each do |p|
+      p.destroy
+    end
+    get :new
+    assert_redirected_to admin_path
+  end
+
 end

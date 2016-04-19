@@ -1,5 +1,6 @@
 class BugsController < ApplicationController
   before_action :authenticate
+  before_action :check_install, :only => [:new]
 
   def new
     if !logged_in?
