@@ -27,6 +27,10 @@ class Bug < ActiveRecord::Base
   validates_presence_of :component
 
   private
+
+  # active record will create the time stamps for you on ever model. If you let
+  # it be there when you generate the model. Unless you need something different
+  # I would encourage you to use that field.
     def add_created_dt
       self.submitted_dt = DateTime.current()
     end
