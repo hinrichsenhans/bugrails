@@ -49,10 +49,10 @@ class Bug < ActiveRecord::Base
         return true
       end
       if self.status.substatus_eligible && self.substatus.no_substatus?
-        errors.add(:substatus, "No substatus has been assigned to eligible status")
+        errors.add(:substatus, "You must assign a substatus for the status (#{status.name})")
       end
       if !self.status.substatus_eligible && !self.substatus.no_substatus?
-        errors.add(:substatus, "This kind of status (#{status.name}) cannot have a valid substatus")
+        errors.add(:substatus, "This kind of status (#{status.name}) cannot have a substatus")
       end
     end
 end
