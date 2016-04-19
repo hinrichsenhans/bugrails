@@ -34,3 +34,12 @@ $ ->
          ).done (data) ->
             $('#versionIntegratedSelect').html(data)
     return
+
+$ -> 
+  $(".status_selector").change (e) ->
+    e.preventDefault()
+    if(eligibleStatuses.indexOf($(".status_selector option:selected").text()) == -1)
+      $("div.substatus").hide()
+    else
+      $("div.substatus").show()
+    return

@@ -71,12 +71,20 @@
   <div class="col-md-6 bug-form-group">
     <fieldset class="bug-form-header">
       <legend>Status Information</legend>
-
+      <script>
+        var eligibleStatuses = <%= Status.substatus_eligible_statuses.html_safe %>;
+      </script>
       <%= f.label :status %>
-      <%= collection_select(:status, :status_id, Status.all, :id, :name, {}, {class: 'form-control', name: 'bug[status_id]'}) %>
+      <%= collection_select(:status, :status_id, Status.all, :id, :name, {}, {class: 'form-control status_selector', name: 'bug[status_id]'}) %>
 
-      <%= f.label :substatus %>
-      <%= collection_select(:substatus, :substatus_id, Substatus.all, :id, :name, {}, {class: 'form-control', name: 'bug[substatus_id]'}) %>
+      <div class="substatus" 
+        <% if @bug.status.nil? || @bug.status.substatus_eligible %>
+            style="display: none;"
+        <% end %>
+      >
+        <%= f.label :substatus %>
+        <%= collection_select(:substatus, :substatus_id, Substatus.all, :id, :name, {}, {class: 'form-control', name: 'bug[substatus_id]'}) %>
+      </div>
 
     </fieldset>
   </div>

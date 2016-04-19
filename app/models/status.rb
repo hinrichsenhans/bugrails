@@ -21,4 +21,9 @@ class Status < ActiveRecord::Base
       false
     end
   end
+
+  def self.substatus_eligible_statuses
+    '["RESOLVED", "VERIFIED", "CLOSED"]'
+  end
+
 end
