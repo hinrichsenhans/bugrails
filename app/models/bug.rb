@@ -32,6 +32,7 @@ class Bug < ActiveRecord::Base
   validates_associated :milestone
 
   validates_presence_of :component
+  validate :status_and_substatus_valid
 
   private
     def add_created_dt
@@ -41,5 +42,17 @@ class Bug < ActiveRecord::Base
     def add_new_status
       self.status = Status.find_by(:name => "NEW")
       self.substatus = Substatus.find_by(:name => "---")
+    end
+
+    def status_and_substatus_valid
+      if self.new_record? #don't validate on new record; add_new_status handles it
+        return true
+      end
+      if self.status.substatus_eligible && self.substatus.no_substatus?
+        errors.add(:substatus, "No substatus has been assigned to eligible status")
+      end
+      if !self.status.substatus_eligible && !self.substatus.no_substatus?
+        errors.add(:substatus, "This kind of status (#{status.name}) cannot have a valid substatus")
+      end
     end
 end

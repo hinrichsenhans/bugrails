@@ -5,6 +5,7 @@ class BugTest < ActiveSupport::TestCase
   def setup
     @bug = bugs(:bug_one)
     @newbug = Bug.new(@bug.attributes)
+    @newbug.status_id = nil
     @newbug.id = nil
   end
 
@@ -17,12 +18,23 @@ class BugTest < ActiveSupport::TestCase
 
   test "bug must have NEW status when created" do
     assert @newbug.new_record?
-    assert @newbug.status_id.nil?
     assert @newbug.save!
     id = Status.find_by(:name => "NEW").id
     subid = Substatus.find_by(:name => "---").id
     assert @newbug.status_id == id
     assert @newbug.substatus_id == subid
+  end
+
+  test "bug checks for valid status and substatus combination" do
+    @bug.status = Status.find_by(:name => "NEW")
+    @bug.substatus = Substatus.find_by(:name => "DUPLICATE")
+    assert_not @bug.valid?
+  end
+
+  test "bug rejects valid status with ineligible substatus" do
+    @bug.status = Status.find_by(:name => "RESOLVED")
+    @bug.substatus = Substatus.find_by(:name => "---")
+    assert_not @bug.valid?
   end
 
   test "bug title must not be empty" do

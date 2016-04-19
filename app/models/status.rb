@@ -3,7 +3,7 @@ class Status < ActiveRecord::Base
   
   has_many :bugs
   
-  def substatus_eligible()
+  def substatus_eligible
     case name
     when "NEW"
       false

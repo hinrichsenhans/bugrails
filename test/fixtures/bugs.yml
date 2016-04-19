@@ -15,6 +15,8 @@ bug_one:
   version_found_id: 1
   component_id: 1
   milestone_id: 1
+  status_id: <%= Status.find_by(:name => "NEW").id %>
+  substatus_id: <%= Substatus.find_by(:name => "---").id %>
 
 # bug_two:
 #   developer: user_one
