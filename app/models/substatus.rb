@@ -3,8 +3,4 @@ class Substatus < ActiveRecord::Base
   
   has_many :bugs
 
-  def no_substatus?
-    self.name == "---"
-  end
-
 end

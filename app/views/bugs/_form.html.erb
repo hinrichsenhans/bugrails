@@ -76,14 +76,13 @@
       </script>
       <%= f.label :status %>
       <%= collection_select(:status, :status_id, Status.all, :id, :name, {}, {class: 'form-control status_selector', name: 'bug[status_id]'}) %>
-
       <div class="substatus" 
         <% if @bug.status.nil? || @bug.status.substatus_eligible %>
             style="display: none;"
         <% end %>
       >
         <%= f.label :substatus %>
-        <%= collection_select(:substatus, :substatus_id, Substatus.all, :id, :name, {}, {class: 'form-control', name: 'bug[substatus_id]'}) %>
+        <%= collection_select(:substatus, :substatus_id, Substatus.all, :id, :name, { :include_blank => "---", }, {class: 'form-control', name: 'bug[substatus_id]'}) %>
       </div>
 
     </fieldset>

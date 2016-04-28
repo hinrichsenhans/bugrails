@@ -20,9 +20,8 @@ class BugTest < ActiveSupport::TestCase
     assert @newbug.new_record?
     assert @newbug.save!
     id = Status.find_by(:name => "NEW").id
-    subid = Substatus.find_by(:name => "---").id
     assert @newbug.status_id == id
-    assert @newbug.substatus_id == subid
+    assert @newbug.substatus_id.nil?
   end
 
   test "bug checks for valid status and substatus combination" do
@@ -33,7 +32,7 @@ class BugTest < ActiveSupport::TestCase
 
   test "bug rejects valid status with ineligible substatus" do
     @bug.status = Status.find_by(:name => "RESOLVED")
-    @bug.substatus = Substatus.find_by(:name => "---")
+    @bug.substatus = nil
     assert_not @bug.valid?
   end
 
