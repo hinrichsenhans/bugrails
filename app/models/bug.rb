@@ -17,6 +17,8 @@ class Bug < ActiveRecord::Base
   belongs_to :status
   belongs_to :substatus
 
+  has_many :comments
+
   #validations
   validates :title, :presence => true
   # "It's broke" is 10 characters, so descriptions need to at least try to be verbose

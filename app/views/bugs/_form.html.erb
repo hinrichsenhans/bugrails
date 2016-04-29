@@ -95,6 +95,13 @@
       <%= f.text_area :description, class: 'form-control' %>
     </div>
   </div>
+
+  <div class="row bug-form-clear">
+    <div class="col-md-12 bug-form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+  </div>
   
   <% submitLabel = @bug.new_record? ? "Submit Bug" : "Update Bug" %>
   <%= f.submit submitLabel, class: 'btn btn-primary' %>
