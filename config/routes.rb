@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
 
-  resources :bugs
+  resources :bugs, :except => [:destroy, :update, :create] do
+    member do
+      post :update, controller: 'bug_update'
+      patch :update, controller: 'bug_update'
+    end
+
+    collection do
+      post :create, controller: 'bug_update'
+    end
+  end
 
   get 'bugdemo' => 'static_pages#bugdemo'
   get 'admin' => 'static_pages#admin'
@@ -13,7 +22,7 @@ Rails.application.routes.draw do
   get 'getsignup' => 'static_pages#getsignup'
   post 'signup' => 'users#signup'
 
-  resources :users
+  resources :users 
   
   resources :products, :except => ['show'] do
     resources :components

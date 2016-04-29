@@ -10,19 +10,6 @@ class BugsController < ApplicationController
     @bug = Bug.new
   end
 
-  def create
-    @productTarget = Product.find(params[:product][:product_id])
-    @bug = @productTarget.bugs.build(allowed_params)
-
-    if logged_in? && submitter_is_current_user? && @bug.save
-      flash[:success] = "The bug has been added"
-      redirect_to @bug
-    else
-      flash.now[:danger] = @bug.errors.messages.inspect
-      render 'new'
-    end
-  end
-
   def show
     @bug = Bug.find(params[:id])
   end
@@ -31,15 +18,7 @@ class BugsController < ApplicationController
     @bugs = Bug.all
   end
 
-  def update
-    @bug = Bug.find(params[:id])
-    if logged_in? && @bug.update(allowed_params)
-      redirect_to bugs_path
-    else
-      flash.now[:danger] = @bug.errors.messages.inspect
-      render 'show'
-    end
-  end
+
 
 private
   def allowed_params
@@ -51,8 +30,6 @@ private
       )
   end
 
-  def submitter_is_current_user?
-    current_user.id == @bug.submitter_id
-  end
+
 
 end
