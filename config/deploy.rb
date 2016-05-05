@@ -2,7 +2,7 @@
 lock '3.5.0'
 
 set :application, 'railszilla'
-set :repo_url, 'git@bitbucket.org/hinrichsenhans/bugrails'
+set :repo_url, 'git@bitbucket.org/hinrichsenhans/bugrails.git'
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.2'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
