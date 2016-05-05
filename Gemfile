@@ -37,6 +37,10 @@ gem 'email_validator', '1.6.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
+gem 'capistrano-bundler', group: :development
+gem 'capistrano-rbenv', '~>2.0', require: false
+gem 'mysql2', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
