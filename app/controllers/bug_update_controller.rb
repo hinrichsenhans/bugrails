@@ -1,4 +1,6 @@
 class BugUpdateController < ApplicationController
+  before_action :authenticate
+  before_action :check_install, :only => [:new]
 
   def create
     @productTarget = Product.find(params[:product][:product_id])
