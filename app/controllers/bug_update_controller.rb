@@ -21,11 +21,28 @@ class BugUpdateController < ApplicationController
       if has_new_comment
         @bug.comments.create!(get_bug_comment)
       end
-      flash[:success] = "The bug has been updated"
+      flash[:success] = "Bug #{@bug.id} has been updated".html_safe
       redirect_to bugs_path
     else
       flash.now[:danger] = @bug.errors.messages.inspect
       redirect_to(bug_path(@bug))
+    end
+  end
+
+  def delete_comment
+    @bug = Bug.find(params[:id])
+    @comment = @bug.comments.find(params[:comment_id])
+    if(@comment.nil?)
+      respond_to do |format|
+        format.html { redirect_to bug_path(@bug), :alert => "Unable to delete bug" }
+        # format.json { head :ok }
+      end
+    else
+      @comment.destroy
+      respond_to do |format|
+        format.html { redirect_to bug_path(@bug) }
+        # format.json { head :ok }
+      end
     end
   end
 
