@@ -1,0 +1,10 @@
+<% commentCounter = 1 %>
+<% @bug.comments.each do |comment| %>
+  <div class="row bug-form-clear">
+    <div class="col-md-12 bug-form-group">
+      <label>Comment #<%= commentCounter %> - <%= comment.created_at %> <a href="#">Delete</a></label>
+      <textarea class="form-control" readonly><%= comment.comment %></textarea>
+      <% commentCounter += 1 %>
+    </div>
+  </div>
+<% end %>
