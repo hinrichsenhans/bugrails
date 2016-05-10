@@ -54,7 +54,8 @@ class Bug < ActiveRecord::Base
         errors.add(:substatus, "You must assign a substatus for the status (#{status.name})")
       end
       if !self.status.substatus_eligible && !self.substatus.nil?
-        errors.add(:substatus, "This kind of status (#{status.name}) cannot have a substatus")
+        #just fix it - most often, this is going from a valid status (RESOLVED|FIXED to another status ASSIGNED and the form hides substatuses)  
+        self.substatus_id = nil
       end
     end
 end
