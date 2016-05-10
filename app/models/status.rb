@@ -26,4 +26,8 @@ class Status < ActiveRecord::Base
     '["RESOLVED", "VERIFIED", "CLOSED"]'
   end
 
+  def active_statuses
+    Status.where(name: ['NEW', 'ASSIGNED', 'REOPENED'])
+  end
+
 end

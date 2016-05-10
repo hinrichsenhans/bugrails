@@ -15,21 +15,15 @@ class BugsController < ApplicationController
   end
 
   def index
-    @bugs = Bug.all
+    @bugs = Bug.active_bugs
+  end
+
+  def index_all
+    @bugs = Bug.all_bugs
+    render 'index'
   end
 
 
-
-private
-  def allowed_params
-    params.require(:bug).permit(
-      :title, :description, 
-      :developer_id, :tester_id, :submitter_id, 
-      :component_id, :milestone_id, :version_found_id,
-      :version_integrated_id
-      )
-  end
-
-
+  private
 
 end

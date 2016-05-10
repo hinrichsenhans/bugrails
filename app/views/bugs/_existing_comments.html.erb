@@ -1,0 +1,10 @@
+<% commentCounter = 1 %>
+<% @bug.comments.each do |comment| %>
+  <div class="row bug-form-clear">
+    <div class="col-md-12 bug-form-group">
+      <label>Comment #<%= commentCounter %> by <%=comment.user.name %> at <%= comment.created_at %> <%= link_to "Delete", delete_comment_bug_path(:comment_id => comment.id), :method => :delete %></label>
+      <textarea class="form-control" readonly><%= comment.comment %></textarea>
+      <% commentCounter += 1 %>
+    </div>
+  </div>
+<% end %>

@@ -5,11 +5,14 @@ Rails.application.routes.draw do
     member do
       post :update, controller: 'bug_update'
       patch :update, controller: 'bug_update'
+      delete 'delete/:comment_id', controller: 'bug_update', action: 'delete_comment', :as => :delete_comment
     end
 
     collection do
       post :create, controller: 'bug_update'
+      get 'all', action: 'index_all'
     end
+
   end
 
   get 'bugdemo' => 'static_pages#bugdemo'

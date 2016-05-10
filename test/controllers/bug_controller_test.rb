@@ -15,10 +15,6 @@ class BugsControllerTest < ActionController::TestCase
     assert_redirected_to login_url
     get :index
     assert_redirected_to login_url
-    post :update, {'id' => "1"} #doesn't matter if invalid
-    assert_redirected_to login_url
-    post :create, {'id' => "1"} #doesn't matter if invalid
-    assert_redirected_to login_url
   end
 
 

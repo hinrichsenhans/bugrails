@@ -55,14 +55,14 @@
 
       <% #current_user IS the submitter %>
       <%= f.label :submitter %>
-      <% singleUser = [User.find(current_user.id)] %>
+      <% singleUser = [User.find(@bug.new_record? ? current_user.id : @bug.submitter_id)] %>
       <%= collection_select(:submitter, :user_id, singleUser, :id, :name, {}, {class: 'form-control', name: 'bug[submitter_id'}) %>
 
       <%= f.label :developer %>
-      <%= collection_select(:developer, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[developer_id]'}) %>
+      <%= collection_select(:developer, :developer_id, User.all, :id, :name, {selected: @bug.developer_id} , {class: 'form-control', name: 'bug[developer_id]'})%>
 
       <%= f.label :tester %>
-      <%= collection_select(:tester, :user_id, User.all, :id, :name, {}, {class: 'form-control', name: 'bug[tester_id]'}) %>
+      <%= collection_select(:tester, :tester_id, User.all, :id, :name, {selected: @bug.tester_id}, {class: 'form-control', name: 'bug[tester_id]' }) %>
 
     </fieldset>
   </div>
@@ -75,14 +75,15 @@
         var eligibleStatuses = <%= Status.substatus_eligible_statuses.html_safe %>;
       </script>
       <%= f.label :status %>
-      <%= collection_select(:status, :status_id, Status.all, :id, :name, {}, {class: 'form-control status_selector', name: 'bug[status_id]'}) %>
+      <%= collection_select(:status, :status_id, Status.all, :id, :name, {selected: @bug.status_id}, {class: 'form-control status_selector', name: 'bug[status_id]'}) %>
       <div class="substatus" 
-        <% if @bug.status.nil? || @bug.status.substatus_eligible %>
+        <% if @bug.substatus.nil? || !@bug.status.substatus_eligible %>
             style="display: none;"
         <% end %>
       >
         <%= f.label :substatus %>
-        <%= collection_select(:substatus, :substatus_id, Substatus.all, :id, :name, { :include_blank => "---", }, {class: 'form-control', name: 'bug[substatus_id]'}) %>
+        <% selected_substatus = @bug.substatus.nil? ? Substatus.first.id : @bug.substatus_id %>
+        <%= collection_select(:substatus, :substatus_id, Substatus.all, :id, :name, { :include_blank => "---", selected: selected_substatus}, {class: 'form-control', name: 'bug[substatus_id]'}) %>
       </div>
 
     </fieldset>
@@ -96,12 +97,13 @@
     </div>
   </div>
 
-  <div class="row bug-form-clear">
-    <div class="col-md-12 bug-form-group">
-      <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control' %>
-    </div>
-  </div>
+  <% #http://stackoverflow.com/questions/2615268/multiple-children-in-single-form-in-rails %>
+  <% if !@bug.new_record? %>
+    <%= render 'existing_comments' %>
+    <%= f.fields_for :comments do |builder| %>
+      <%= render 'comment', :f => builder %>
+    <% end %>
+  <% end %>
   
   <% submitLabel = @bug.new_record? ? "Submit Bug" : "Update Bug" %>
   <%= f.submit submitLabel, class: 'btn btn-primary' %>

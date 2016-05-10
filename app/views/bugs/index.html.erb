@@ -1,4 +1,4 @@
-<h1>Bug List - All products</h1>
+<h1>Bug List - All Products</h1>
 <div class="col-md-12">
   <table class="table table-responsive table-hover table-striped">
     <thead>
@@ -11,6 +11,7 @@
         <th>Assigned To</th>
         <th>Found In</th>
         <th>Milestone</th>
+        <th>Status</th>
       </tr>
     </thead>
 
@@ -25,9 +26,16 @@
           <td><%= User.find(bug.developer_id).name %></td>
           <td><%= Version.find(bug.version_found_id).name %></td>
           <td><%= Milestone.find(bug.milestone_id).name %></td>
+          <td><%= Status.find(bug.status_id).name %></td>
         </tr>
       <% end %>
     </tbody>
-
   </table>
+</div>
+<div class="container">
+  <% if controller.action_name == 'index_all' %>
+    <p><%= link_to "Show only active bugs", bugs_path %></p>
+  <% else %>
+    <p><%= link_to "Show all bugs", all_bugs_path %> </a></p>
+  <% end %>
 </div>
