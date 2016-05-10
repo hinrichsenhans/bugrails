@@ -1,4 +1,4 @@
-<h1>Bug List - All products</h1>
+<h1>Bug List - All Products</h1>
 <div class="col-md-12">
   <table class="table table-responsive table-hover table-striped">
     <thead>
@@ -30,6 +30,12 @@
         </tr>
       <% end %>
     </tbody>
-
   </table>
+</div>
+<div class="container">
+  <% if controller.action_name == 'index_all' %>
+    <p><%= link_to "Show only active bugs", bugs_path %></p>
+  <% else %>
+    <p><%= link_to "Show all bugs", all_bugs_path %> </a></p>
+  <% end %>
 </div>

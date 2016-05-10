@@ -36,6 +36,14 @@ class Bug < ActiveRecord::Base
   validates_presence_of :component
   validate :status_and_substatus_valid
 
+  def self.active_bugs
+    Bug.joins(:status).where(statuses: {name: ['NEW', 'ASSIGNED', 'REOPENED']})
+  end
+
+  def self.all_bugs
+    Bug.all
+  end
+
   private
     def add_created_dt
       self.submitted_dt = DateTime.current()

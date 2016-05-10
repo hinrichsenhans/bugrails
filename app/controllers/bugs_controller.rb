@@ -15,9 +15,13 @@ class BugsController < ApplicationController
   end
 
   def index
-    @bugs = Bug.all
+    @bugs = Bug.active_bugs
   end
 
+  def index_all
+    @bugs = Bug.all_bugs
+    render 'index'
+  end
 
 
   private
