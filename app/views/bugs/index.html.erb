@@ -11,6 +11,7 @@
         <th>Assigned To</th>
         <th>Found In</th>
         <th>Milestone</th>
+        <th>Status</th>
       </tr>
     </thead>
 
@@ -25,6 +26,7 @@
           <td><%= User.find(bug.developer_id).name %></td>
           <td><%= Version.find(bug.version_found_id).name %></td>
           <td><%= Milestone.find(bug.milestone_id).name %></td>
+          <td><%= Status.find(bug.status_id).name %></td>
         </tr>
       <% end %>
     </tbody>
