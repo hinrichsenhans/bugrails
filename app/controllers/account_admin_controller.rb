@@ -1,7 +1,7 @@
 class AccountAdminController < ApplicationController
   
   def activate
-
+    
   end
 
   def reset_request

@@ -5,9 +5,13 @@ user_one:
   name: Developer One
   email: email@test.com
   password_digest: <%= BCrypt::Password.create('abcdefghijkl') %>
+  activated: true
+  activated_at: Time.zone.now
 
 user_two:
   id: 2
   name: Developer Two
   email: second_email@test.com
   password_digest: <%= BCrypt::Password.create('abcdefghijkl') %>
+  activated: true
+  activated_at: Time.zone.now
