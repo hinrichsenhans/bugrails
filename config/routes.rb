@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   get 'getsignup' => 'static_pages#getsignup'
   post 'signup' => 'users#signup'
 
-  post 'activate/:token' => 'account_admin#activate', as: :activation
+  # post 'activate/:token' => 'account_admin#activate', as: :activation
+  get 'activate/:token' => 'account_admin#activate', as: :activation
 
   get 'reset' => 'account_admin#reset_request', as: :reset_request
   post 'reset/create' => 'account_admin#create_reset', as: :create_reset

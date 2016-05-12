@@ -5,10 +5,9 @@ class AdminMailer < ApplicationMailer
   #
   #   en.admin_mailer.account_activation.subject
   #
-  def account_activation
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def account_activation(user)
+    @user = user
+    mail to: user.email, subject: "Railszilla - Activate your account"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -16,9 +15,8 @@ class AdminMailer < ApplicationMailer
   #
   #   en.admin_mailer.password_reset.subject
   #
-  def password_reset
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def password_reset(user)
+    @user = user
+    mail to: user.email, subject: "Railszilla - Requested password reset"
   end
 end

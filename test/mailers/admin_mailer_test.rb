@@ -2,17 +2,19 @@ require 'test_helper'
 
 class AdminMailerTest < ActionMailer::TestCase
   test "account_activation" do
-    mail = AdminMailer.account_activation
-    assert_equal "Account activation", mail.subject
-    assert_equal ["to@example.org"], mail.to
+    user = users(:user_one)
+    user.activation_token = User.new_token
+    mail = AdminMailer.account_activation(user)
+    assert_equal "Railszilla - Activate your account", mail.subject
+    assert_equal [users(:user_one).email], mail.to
     assert_equal ["from@example.com"], mail.from
     assert_match "Hi", mail.body.encoded
   end
 
   test "password_reset" do
-    mail = AdminMailer.password_reset
-    assert_equal "Password reset", mail.subject
-    assert_equal ["to@example.org"], mail.to
+    mail = AdminMailer.password_reset(users(:user_two))
+    assert_equal "Railszilla - Requested password reset", mail.subject
+    assert_equal [users(:user_two).email], mail.to
     assert_equal ["from@example.com"], mail.from
     assert_match "Hi", mail.body.encoded
   end

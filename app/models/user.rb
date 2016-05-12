@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
 
   private
     def downcase_email
@@ -27,8 +31,9 @@ class User < ActiveRecord::Base
     end
 
     def create_activation_digest
-      self.activation_token = SecureRandom.urlsafe_base64
-      self.activation_digest = User.digest(activation_token)
+      self.activation_token = User.new_token
+      puts self.activation_token
+      self.activation_digest = User.digest(self.activation_token)
     end    
 
 end
