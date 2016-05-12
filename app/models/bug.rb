@@ -37,7 +37,7 @@ class Bug < ActiveRecord::Base
   validate :status_and_substatus_valid
 
   def self.active_bugs
-    Bug.joins(:status).where(statuses: {name: ['NEW', 'ASSIGNED', 'REOPENED']})
+    Bug.joins(:status).where(statuses: {name: ['NEW', 'ASSIGNED', 'REOPENED']}).order(:id)
   end
 
   def self.all_bugs
