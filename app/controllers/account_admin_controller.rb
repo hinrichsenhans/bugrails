@@ -55,7 +55,25 @@ class AccountAdminController < ApplicationController
   end
 
   def process_reset
-    #change password if OK
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticated(:reset, params[:token])
+      #change password if OK
+      @user.password = params[:user][:password]
+      @user.password_confirmation = params[:user][:password_confirmation]
+      if @user.save
+        flash[:info] = "Your password has been changed. Please log in."
+        log_out
+        redirect_to root_url
+        return
+      else
+        flash[:warning] = @user.errors.messages
+        @user.reset_token = params[:token]
+        render 'users/change_password'
+        return
+      end
+    end
+
+    flash[:warning] = "Please log in or request your password reset again"
     redirect_to root_url
   end
 
