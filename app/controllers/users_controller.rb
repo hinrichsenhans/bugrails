@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def signup
     user = User.new(allowed_params)
-    if(user.save)
+    if user.save
       AdminMailer.account_activation(user).deliver_now
       flash[:info] = "One more step - please use the link emailed to you to activate your account"
       redirect_to root_url

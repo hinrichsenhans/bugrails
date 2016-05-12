@@ -14,8 +14,15 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  
+  #heavily influenced by the RoR tutorial - trying not to reinvent the wheel for secure login/pw reset/activate
+  #I am trying a few things over in the routes file, FWIW
   def User.new_token
     SecureRandom.urlsafe_base64
+  end
+
+  def User.digest(string)
+    BCrypt::Password.create(string, cost: BCrypt::Engine.cost)
   end
 
   def authenticated(attribute, token)
@@ -32,10 +39,7 @@ class User < ActiveRecord::Base
       self.email = email.downcase
     end
 
-    #digest methods are from the RoR Tutorial
-    def User.digest(string)
-      BCrypt::Password.create(string, cost: BCrypt::Engine.cost)
-    end
+
 
     def create_activation_digest
       self.activation_token = User.new_token
