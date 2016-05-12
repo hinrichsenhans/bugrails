@@ -27,7 +27,8 @@ class BugTest < ActiveSupport::TestCase
   test "bug checks for valid status and substatus combination" do
     @bug.status = Status.find_by(:name => "NEW")
     @bug.substatus = Substatus.find_by(:name => "DUPLICATE")
-    assert_not @bug.valid?
+    @bug.valid? #does it fix it after one try?
+    assert @bug.valid?
   end
 
   test "bug rejects valid status with ineligible substatus" do
