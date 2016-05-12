@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
     self.reset_token = User.new_token
     update_attribute(:reset_digest, User.digest(self.reset_token))
     update_attribute(:reset_requested_at, Time.zone.now)
+    puts self.errors
   end
 
   private
