@@ -18,22 +18,29 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def authenticated(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
 
   private
+
+
+
     def downcase_email
       self.email = email.downcase
     end
 
     #digest methods are from the RoR Tutorial
     def User.digest(string)
-      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-      BCrypt::Password.create(string, cost: cost)
+      BCrypt::Password.create(string, cost: BCrypt::Engine.cost)
     end
 
     def create_activation_digest
       self.activation_token = User.new_token
       puts self.activation_token
-      self.activation_digest = User.digest(self.activation_token)
+      self.activation_digest = User.digest(activation_token)
     end    
 
 end

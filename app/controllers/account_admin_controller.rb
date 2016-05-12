@@ -2,11 +2,11 @@ class AccountAdminController < ApplicationController
   
   def activate
     user = User.find_by(email: params[:email])
-    if user && !user.activated? && User.digest(params[:token]) == user.activation_digest
+    if user && !user.activated? && user.authenticated(:activation, params[:token])
       user.activated = true
       user.activated_at = Time.zone.now
       user.save
-      log_in userapp
+      log_in user
       flash[:success] = "Welcome! Your account has been activated."
     else
       if user
