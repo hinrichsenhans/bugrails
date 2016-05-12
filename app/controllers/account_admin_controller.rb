@@ -22,19 +22,38 @@ class AccountAdminController < ApplicationController
   end
 
   def reset_request
-
+    if request.xhr?
+      render partial: 'users/reset'
+    else
+      redirect_to root_url
+    end
   end
 
-  def create_reset
-
+  def send_reset
+    user = User.find_by(:email => params[:user][:username])
+    puts user.inspect
+    temp_user = User.new
+    temp_user.email = params[:user][:username]
+    if !temp_user.validate_email?
+      flash[:danger] = "Can't reset password - incorrectly formatted email"
+      redirect_to root_url
+      return
+    end
+    if user
+      #mail
+    else
+      #nomail
+    end
+    flash[:info] = "Please check your email for further instructions"
+    redirect_to root_url
   end
 
   def reset_form
-
+    #render form with password change
   end
 
   def process_reset
-    
+    #change password if OK
   end
 
 end

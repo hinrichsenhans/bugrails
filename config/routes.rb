@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   get 'activate/:token' => 'account_admin#activate', as: :activation
 
   get 'reset' => 'account_admin#reset_request', as: :reset_request
-  post 'reset/create' => 'account_admin#create_reset', as: :create_reset
-  get 'reset/:id' => 'account_admin#reset_form', as: :reset_form
+  post 'reset' => 'account_admin#send_reset', as: :send_reset
+  get 'reset/:id' => 'account_admin#reset_form', as: :change_password
   post 'reset/:id' => 'account_admin#process_reset', as: :process_reset
 
   resources :users 

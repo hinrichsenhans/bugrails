@@ -31,6 +31,21 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
 
+  def validate_email?
+    User.validators_on(:email).each do |validator|
+      if(validator.kind == :uniqueness)
+        next
+      end
+      validator.validate_each(self, :email, self.email)
+    end
+    if !self.errors.messages.empty?
+      puts "errors: "
+      puts self.errors.messages.inspect
+      return false
+    end
+    return true
+  end
+
   private
 
 

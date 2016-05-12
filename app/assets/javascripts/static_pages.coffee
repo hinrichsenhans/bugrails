@@ -14,3 +14,9 @@ $ ->
     e.preventDefault()
     $.get('getsignup').done (data) ->
       $('div#userLogin').html(data)
+
+$ ->
+  $("a.getReset").click (e) ->
+    e.preventDefault()
+    $.get('reset').done (data) ->
+      $('div#userLogin').html(data)
