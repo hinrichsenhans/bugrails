@@ -30,8 +30,8 @@ Rails.application.routes.draw do
 
   get 'reset' => 'account_admin#reset_request', as: :reset_request
   post 'reset' => 'account_admin#send_reset', as: :send_reset
-  get 'reset/:id' => 'account_admin#reset_form', as: :change_password
-  post 'reset/:id' => 'account_admin#process_reset', as: :process_reset
+  get 'reset/:token' => 'account_admin#reset_form', as: :change_password
+  post 'resetpassword' => 'account_admin#process_reset', as: :process_reset
 
   resources :users 
   

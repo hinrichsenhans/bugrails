@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :activation_token
+  attr_accessor :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
 
@@ -46,15 +46,17 @@ class User < ActiveRecord::Base
     return true
   end
 
+  def update_reset_token
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(self.reset_token))
+    update_attribute(:reset_requested_at, Time.zone.now)
+  end
+
   private
-
-
 
     def downcase_email
       self.email = email.downcase
     end
-
-
 
     def create_activation_digest
       self.activation_token = User.new_token

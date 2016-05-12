@@ -9,13 +9,6 @@ class AccountAdminController < ApplicationController
       log_in user
       flash[:success] = "Welcome! Your account has been activated."
     else
-      if user
-        puts user.inspect
-        puts user.activated
-        puts user.activation_digest
-        puts params[:token]
-        puts User.digest(params[:id])
-      end
       flash[:danger] = "Invalid activation request"
     end
     redirect_to root_url
@@ -41,19 +34,29 @@ class AccountAdminController < ApplicationController
     end
     if user
       #mail
+      user.update_reset_token
+      AdminMailer.password_reset(user).deliver_now
     else
-      #nomail
+      #no mail, no reset, but silently let it go
     end
     flash[:info] = "Please check your email for further instructions"
     redirect_to root_url
   end
 
   def reset_form
-    #render form with password change
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticated(:reset, params[:token])
+      @user.reset_token = params[:token]
+      render 'users/change_password'
+    else
+      flash[:warning] = "Invalid password reset request"
+      redirect_to root_url
+    end
   end
 
   def process_reset
     #change password if OK
+    redirect_to root_url
   end
 
 end
